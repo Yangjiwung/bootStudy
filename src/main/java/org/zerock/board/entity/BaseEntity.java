@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass // 직접 테이블용은 아님을 명시
 @Getter // 게터
-@EntityListeners(value = {AuditingEntityListener.class})
+@EntityListeners(value = {AuditingEntityListener.class}) // 엔티티 객체가 생성/변경을 감지하는 역할
 // 세터 대신 감시용 코드 (데이터 변경을 감지하여 적용 -> Main메서드에 추가코드 필수)
 abstract class BaseEntity { // abstract 상속간의 추상 클래스 동작
     // 테이블에 공통되는 부분을 상속해줄 클래스

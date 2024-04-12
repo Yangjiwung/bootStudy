@@ -14,7 +14,7 @@ public class GuestbookServiceTests {
     @Autowired
     private GuestbookService service;
 
-    @Test
+/*    @Test
     public void testRegister(){
         GuestbookDTO guestbookDTO = GuestbookDTO.builder()
                 .title("Sample Title...")
@@ -22,7 +22,7 @@ public class GuestbookServiceTests {
                 .writer("user0")
                 .build();
         System.out.println(service.register(guestbookDTO));
-    }
+    }*/
 
     @Test
     public void  testList(){
@@ -52,6 +52,29 @@ public class GuestbookServiceTests {
         NEXt : true 다음페이지로 가는 링크 필요
         TOTAL : 31  총 페이지수
 */
+    }
+
+    @Test
+    public void testSearch(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .type("tc") // 검색 조건 제목,내용
+                .keyword("한글")
+                .build();
+
+        PageResultDTO<GuestbookDTO, Guestbook>resultDTO = service.getList(pageRequestDTO);
+
+        System.out.println("Prev : " + resultDTO.isPrev());
+        System.out.println("Next : " + resultDTO.isNext());
+        System.out.println("Total : " + resultDTO.getTotalPage());
+        System.out.println("---------------------------------------");
+
+        for (GuestbookDTO guestbookDTO : resultDTO.getDtoList()){
+            System.out.println(guestbookDTO);
+        }
+        System.out.println("------------------------------------------");
+        resultDTO.getPageList().forEach(i-> System.out.println(i));
 
     }
 

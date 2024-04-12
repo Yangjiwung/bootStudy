@@ -15,6 +15,10 @@ public class PageRequestDTO {
     private int page; // 페이지
     private int size; // 페이지당 갯수
 
+    private String type;
+
+    private String keyword;
+
     public PageRequestDTO(){
         this.page = 1; // 기본값 1페이지
         this.size = 10; // 10개

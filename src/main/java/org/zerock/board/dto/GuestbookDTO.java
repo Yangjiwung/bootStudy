@@ -1,5 +1,6 @@
 package org.zerock.board.dto;
 
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.board.entity.Guestbook;
 import org.zerock.board.entity.QGuestbook;
 
@@ -21,7 +22,8 @@ public class GuestRepositoryTests {
     @Autowired // 인터페이스 자동 주입
     private GuestbookRepository guestbookRepository;
 
-    @Test
+
+   @Test
     public void insertDummies(){ // 테이블에 더미데이터 300개 추가
         IntStream.rangeClosed(1, 300).forEach(i -> {
             Guestbook guestbook = Guestbook.builder()
@@ -37,7 +39,7 @@ public class GuestRepositoryTests {
     @Test
     public void updateTest(){
         // 게시물을 수정하는 테스트 진행
-        Optional<Guestbook> result = guestbookRepository.findById(300L);
+        Optional<Guestbook> result = guestbookRepository.findById(303L);
         // 300번에 게시물을 찾아 본다. 찾아온 게시물을 엔티티가 result에 들어감
 
         if (result.isPresent()) { // 객체가 있으면?
