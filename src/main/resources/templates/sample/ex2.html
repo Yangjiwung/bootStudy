@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DTO 객체 출력 해보기</title>
+<style>
+    .target{
+        background-color: azure;
+    }
+</style>
+
+</head>
+<body>
+  <ul>
+      <li th:each="dto : ${list}"> <!-- for문 모델에 있는 list 키를 가져옴 -->
+        [[ ${dto} ]] <!-- list안쪽 객체를 출력 -->
+      </li>
+
+                        <!--state는 상태 객체로 예를들면  index-->
+      <li th:each="dto, state: ${list}">
+          [[ ${state.index} ]]------[[ ${dto} ]]
+      </li>
+
+      <!--제어문 처리-->
+      <li th:each="dto, state: ${list}" th:if="${dto.sno % 5 == 0}"><!--th:if="${dto.sno % 5 == 0}" 5의 배수를 가져와라-->
+         [[ ${dto} ]]
+      </li>
+
+
+      <li th:each="dto, state : ${list}">
+          <span th:if="${dto.sno % 5 == 0}" th:text="${'=============' + dto.sno}"></span> <!--조건문 5로 나눴을때 나머지가 0 이면 출력-->
+          <span th:unless="${dto.sno % 5 == 0}" th:text="${dto.first}"></span><!--else -> sno가 5의 배수가 아닌것 출력-->
+      </li>
+      ================================삼항 연산자를 이용================================
+        <!--th:if를 이용하는 방식이 번거롭다면 삼항 연산자 방식을 이용 -->
+      <li th:each="dto, state : ${list}" th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></li>
+
+      ================================삼항 연산자를 이용 스타일입히기================================
+      <li th:each="dto, state : ${list}"  th:class="${dto.sno % 5 ==0}?'target'" th:text="${dto}">     </li>
+
+      ================================ th:block ================================
+      <th:block th:each="dto:${list}">
+          <li th:text="${dto.sno % 5 == 0}?${dto.sno}:${dto.first}"></li>
+      </th:block>
+
+
+
+  </ul>
+
+
+</body>
+</html>

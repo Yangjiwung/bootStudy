@@ -49,8 +49,8 @@ public interface MemoRepository extends JpaRepository<Memo, Long> {
 
 
     // 매개값이 객체(빈)으로 들어올 경우
-    @Query("UPDATE Memo m SET m.memoText =:#{memoBean.memoText} WHERE m.mno=:#{memoBean.mno}")
-    int updateMemoBean(@Param("memoBean") Memo memo);
+/*    @Query("UPDATE Memo m SET m.memoText =:#{memoBean.memoText} WHERE m.mno=:#{memoBean.mno}")
+    int updateMemoBean(@Param("memoBean") Memo memo);*/
 
     
     // @Query 메서드로 페이징 처리 해보기 -> 리턴 타입이 Page<Memo>
