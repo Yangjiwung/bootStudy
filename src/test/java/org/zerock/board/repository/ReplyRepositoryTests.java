@@ -48,7 +48,15 @@ public class ReplyRepositoryTests {
         System.out.println(reply.getBoard()); // 연관관계
     }
 
+    @Test
+    public void  testListByBoard(){
 
+        List<Reply> replyList = replyRepository.getRepliesByBoardOrderByRno(Board.builder()
+                                                                            .bno(97L).build());
+
+        replyList.forEach(reply -> System.out.println(reply));
+
+    }
 
 
 
